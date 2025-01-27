@@ -1,81 +1,65 @@
 # Python Code for Benchmarking Sorting Algorithms
-# Name: Aishwarya Kadam
-# Student ID: 1002199035
+# Name: Aishwarya Kadam | Student ID: 1002199035
 
 import time
 import random
 import matplotlib.pyplot as plt
 
-# Selection Sort Algorithm
-def selection_sort(data):
-    length = len(data)
-    for i in range(length):
-        min_index = i
-        for j in range(i + 1, length):
-            if data[j] < data[min_index]:
-                min_index = j
-        data[i], data[min_index] = data[min_index], data[i]
+# Sorting algorithms
+def selection_sort(dataset):
+    for idx in range(len(dataset)):
+        min_pos = idx
+        for j in range(idx + 1, len(dataset)):
+            if dataset[j] < dataset[min_pos]:
+                min_pos = j
+        dataset[idx], dataset[min_pos] = dataset[min_pos], dataset[idx]
 
-# Bubble Sort Algorithm
-def bubble_sort(data):
-    length = len(data)
-    for i in range(length - 1):
-        swapped = False
-        for j in range(length - i - 1):
-            if data[j] > data[j + 1]:
-                data[j], data[j + 1] = data[j + 1], data[j]
-                swapped = True
-        if not swapped:
+def bubble_sort(dataset):
+    for idx in range(len(dataset) - 1):
+        is_swapped = False
+        for j in range(len(dataset) - idx - 1):
+            if dataset[j] > dataset[j + 1]:
+                dataset[j], dataset[j + 1] = dataset[j + 1], dataset[j]
+                is_swapped = True
+        if not is_swapped:
             break
 
-# Insertion Sort Algorithm
-def insertion_sort(data):
-    length = len(data)
-    for i in range(1, length):
-        current_value = data[i]
-        position = i - 1
-        while position >= 0 and data[position] > current_value:
-            data[position + 1] = data[position]
-            position -= 1
-        data[position + 1] = current_value
+def insertion_sort(dataset):
+    for idx in range(1, len(dataset)):
+        current_value = dataset[idx]
+        pos = idx - 1
+        while pos >= 0 and dataset[pos] > current_value:
+            dataset[pos + 1] = dataset[pos]
+            pos -= 1
+        dataset[pos + 1] = current_value
 
-# Measure execution time of sorting algorithms
-def evaluate_sorting_performance(sort_function, test_sizes):
+# Benchmarking function
+def measure_sorting_time(sort_func, input_sizes):
     execution_times = []
-    for size in test_sizes:
-        # Create a random array of integers
-        array = [random.randint(-10000, 10000) for _ in range(size)]
-        
-        start = time.time()
-        sort_function(array)
-        end = time.time()
-        
-        execution_times.append(end - start)
-    
+    for size in input_sizes:
+        random_data = [random.randint(-10000, 10000) for _ in range(size)]
+        start_time = time.time()
+        sort_func(random_data)
+        end_time = time.time()
+        execution_times.append(end_time - start_time)
     return execution_times
 
-# Visualizing performance results
-def display_performance_graph(test_sizes, sel_times, bub_times, ins_times):
-    plt.figure(figsize=(10, 6))
-    
-    plt.plot(test_sizes, sel_times, label="Selection Sort")
-    plt.plot(test_sizes, bub_times, label="Bubble Sort")
-    plt.plot(test_sizes, ins_times, label="Insertion Sort")
-    
-    plt.xlabel("Input Size (n)")
-    plt.ylabel("Execution Time (seconds)")
-    plt.title("Sorting Algorithms Performance Analysis")
-    plt.legend()
-    plt.grid(True)
-    plt.show()
+# Define input sizes for benchmarking
+input_sizes = [5, 10, 20, 50, 100, 200, 500, 1000]
 
-# Define test sizes for the benchmarking
-test_sizes = [5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 25000, 50000, 75000]
+# Run benchmarks
+selection_sort_times = measure_sorting_time(selection_sort, input_sizes)
+bubble_sort_times = measure_sorting_time(bubble_sort, input_sizes)
+insertion_sort_times = measure_sorting_time(insertion_sort, input_sizes)
 
-# Running the performance evaluation
-selection_results = evaluate_sorting_performance(selection_sort, test_sizes)
-bubble_results = evaluate_sorting_performance(bubble_sort, test_sizes)
-insertion_results = evaluate_sorting_performance(insertion_sort, test_sizes)
+# Plot results
+plt.plot(input_sizes, selection_sort_times, label="Selection Sort", color='blue')
+plt.plot(input_sizes, bubble_sort_times, label="Bubble Sort", color='orange')
+plt.plot(input_sizes, insertion_sort_times, label="Insertion Sort", color='green')
 
-# Generate performance comparison graph
-display_performance_graph(test_sizes, selection_results, bubble_results, insertion_results)
+plt.xlabel("Input Size (n)")
+plt.ylabel("Time (seconds)")
+plt.title("Benchmarking Sorting Algorithms")
+plt.legend()
+plt.grid(True)
+plt.show()
