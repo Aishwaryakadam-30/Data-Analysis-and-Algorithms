@@ -13,7 +13,7 @@ function x = f(n)
 
 ## Runtime of the Algorithm mathematically
 
-![1](https://github.com/user-attachments/assets/ada3dab1-06a6-4f61-9943-f34587209227)
+![1]([https://github.com/Aishwaryakadam-30/Data-Analysis-and-Algorithms/blob/main/Hands_On_3/IMG_6954.HEIC])
 
 ## Plot time vs n and curve of the polynomial
 
