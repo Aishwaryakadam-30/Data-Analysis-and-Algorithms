@@ -3,9 +3,9 @@
 
 ---
 
-## 🚀 Algorithms Included
+## Algorithms Included
 
-### 1. 📦 Bellman-Ford Algorithm (`bellman_ford.py`)
+### 1. Bellman-Ford Algorithm (`bellman_ford.py`)
 - Computes single-source shortest paths even with **negative edge weights**.
 - Detects **negative-weight cycles**.
 - Based on CLRS **Figure 24.4**.
@@ -18,7 +18,7 @@
 
 ---
 
-### 2. ⚡ Dijkstra’s Algorithm (`dijkstra.py`)
+### 2.  Dijkstra’s Algorithm (`dijkstra.py`)
 - Computes shortest paths from a single source **when all edge weights are non-negative**.
 - Efficient for dense graphs and supports path reconstruction.
 - Based on CLRS **Figure 24.6**.
@@ -29,7 +29,7 @@
 
 ---
 
-### 3. 🌐 Floyd-Warshall Algorithm (`floyd_warshall.py`)
+### 3.  Floyd-Warshall Algorithm (`floyd_warshall.py`)
 - Solves the **all-pairs shortest path** problem.
 - Works with negative weights (but no negative cycles).
 - Includes both **iterative** and **recursive** implementations.
@@ -41,7 +41,7 @@
 
 ---
 
-## 🧪 Example Graphs
+##  Example Graphs
 
 All algorithms use example graphs taken from CLRS:
 - Bellman-Ford: Figure 24.4 (5-node graph with negative weights)
@@ -50,7 +50,7 @@ All algorithms use example graphs taken from CLRS:
 
 ---
 
-## 🛠 How to Run
+## How to Run
 
 ### Python 3 Required
 
